@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Question </title>
+        <meta charset="windows-1252">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <style>
+            
+            .container{overflow: hidden}
+            .tab{float: left;}
+            .tab-2{margin-left: 50px}
+            .tab-2 input{display: block;margin-bottom: 10px}
+            tr{transition:all .25s ease-in-out}
+            tr:hover{background-color:#EEE;cursor: pointer}
+            
+        </style>
+        
+    </head>
+    <body>
+        
+                User ID :<br><span id="user"></span>
+				
+          	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+			<input type="text" name="name" id="name">
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+               <input type="text" name="occupuration" id="occupuration">
+                
+                <button onclick="add();">Add</button>
+  <br><br><br><br><br>		 
+         
+		 <button onclick="sort()">Sort</button>
+
+<ul id="sort">
+  <li>User</li>
+  <li>Username</li>
+  <li>Useroperation</li>
+  
+</ul>
+		 
+		 <br><br><br>
+        <div class="container">
+           
+                <table id="table" border="1">
+                    <tr>
+                        <th>User ID</th>
+                        <th>Username</th>
+                        <th>UserOccupuration</th>
+                    </tr>
+                   
+                    
+                   
+                </table>
+				
+				
+    
+           
+        </div>
+        
+        <script>
+            
+            var rIndex,
+                table = document.getElementById("table");
+    
+            // add Row
+            function add()
+            {
+                // get the table by id
+                // create a new row and cells
+                // get value from input text
+                // set the values into row cell's
+             
+                var newRow = table.insertRow(table.length),
+                    cell1 = newRow.insertCell(0),
+                    cell2 = newRow.insertCell(1),
+                    cell3 = newRow.insertCell(2),
+					m= document.getElementById("user").innerHTML;
+					m++;
+					document.getElementById("user").innerHTML = m;
+                    
+                    name = document.getElementById("name").value,
+                    occupuration = document.getElementById("occupuration").value;
+            
+                cell1.innerHTML = m;
+                cell2.innerHTML = name;
+                cell3.innerHTML = occupuration;
+                
+
+            
+            }
+            
+         function sort() {
+  var list, i, switching, a, shouldSwitch, dir, switchcount = 0;
+  list = document.getElementById("sort");
+  switching = true;
+  // Set the sorting direction to ascending:
+  dir = "asc"; 
+  // Make a loop that will continue until no switching has been done:
+  while (switching) {
+    // start by saying: no switching is done:
+    switching = false;
+    a = list.getElementsByTagName("LI");
+    // Loop through all list-items:
+    for (i = 0; i < (a.length - 1); i++) {
+      //start by saying there should be no switching:
+      shouldSwitch = false;
+      /* check if the next item should switch place with the current item,
+      based on the sorting direction (asc or desc): */
+      if (dir == "asc") {
+        if (a[i].innerHTML.toLowerCase() > a[i + 1].innerHTML.toLowerCase()) {
+          /* if next item is alphabetically lower than current item,
+          mark as a switch and break the loop: */
+          shouldSwitch = true;
+          break;
+        }
+      } else if (dir == "desc") {
+        if (a[i].innerHTML.toLowerCase() < a[i + 1].innerHTML.toLowerCase()) {
+          /* if next item is alphabetically higher than current item,
+          mark as a switch and break the loop: */
+          shouldSwitch= true;
+          break;
+        }
+      }
+    }
+    if (shouldSwitch) {
+      /* If a switch has been marked, make the switch
+      and mark that a switch has been done: */
+      a[i].parentNode.insertBefore(a[i + 1], a[i]);
+      switching = true;
+      // Each time a switch is done, increase switchcount by 1:
+      switchcount ++;
+    } else {
+      /* If no switching has been done AND the direction is "asc",
+      set the direction to "desc" and run the while loop again. */
+      if (switchcount == 0 && dir == "asc") {
+        dir = "desc";
+        switching = true;
+      }
+    }
+  }
+}
+		 
+		 
+        </script>
+        
+    </body>
+</html>
